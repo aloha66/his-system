@@ -1,5 +1,5 @@
 import React from "react";
-import { Steps, Divider, Layout } from "antd";
+import { Steps, Divider, Layout, Button } from "antd";
 import OutpatientList from "../components/OutpatientList";
 
 const { Content } = Layout;
@@ -16,7 +16,13 @@ function Doc() {
           minHeight: 280
         }}
       >
-        <OutpatientList title={() => <h2>未诊病人 </h2>} />
+        <OutpatientList
+          title={() => (
+            <span>
+              未诊病人 <Button type="primary">新增</Button>
+            </span>
+          )}
+        />
       </Content>
       <Content
         style={{
@@ -26,7 +32,7 @@ function Doc() {
           minHeight: 280
         }}
       >
-        <OutpatientList title={() => <h2>已诊病人 </h2>} />
+        <OutpatientList title={() => <span>已诊病人 </span>} />
       </Content>
     </React.Fragment>
   );
