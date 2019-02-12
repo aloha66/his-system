@@ -6,7 +6,8 @@ import "../assets/frame.css";
 import Home from "./Home";
 import Doc from "./Doc";
 import Pha from "./Pha";
-
+import EditPatient from "../components/editPatient/EditPatientForm";
+import ContentCom from "../components/Content";
 const { Sider, Content } = Layout;
 
 function Frame(props) {
@@ -28,6 +29,14 @@ function Frame(props) {
             <Route exact path="/" component={Home} />
             <Route path="/doc" component={Doc} />
             <Route path="/pha" component={Pha} />
+            <Route
+              path="/edit_patient"
+              component={() => (
+                <ContentCom>
+                  <EditPatient />
+                </ContentCom>
+              )}
+            />
           </Switch>
         </Content>
       </Layout>

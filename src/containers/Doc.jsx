@@ -1,13 +1,24 @@
-import React from "react";
-import { Steps, Divider, Layout, Button } from "antd";
+import React, { useState } from "react";
+import { Steps, Divider, Layout, Button, Modal } from "antd";
 import OutpatientList from "../components/OutpatientList";
+import EditPatient from "../components/editPatient/EditPatientForm";
 
 const { Content } = Layout;
 const Step = Steps.Step;
 
 function Doc() {
+  let [editPatient, setEditPatient] = useState(false);
   return (
     <React.Fragment>
+      <Modal
+        title="新增患者"
+        visible={editPatient}
+        onOk={() => setEditPatient(false)}
+        onCancel={() => setEditPatient(false)}
+      >
+        <EditPatient />
+      </Modal>
+
       <Content
         style={{
           margin: "24px 16px",
@@ -19,7 +30,10 @@ function Doc() {
         <OutpatientList
           title={() => (
             <span>
-              未诊病人 <Button type="primary">新增</Button>
+              未诊病人{" "}
+              <Button type="primary" onClick={() => setEditPatient(true)}>
+                新增
+              </Button>
             </span>
           )}
         />
