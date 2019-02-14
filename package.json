@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.13.2",
+    "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.11",
     "less": "^3.9.0",
@@ -14,7 +15,8 @@
     "react-dom": "^16.8.1",
     "react-hot-loader": "^4.6.5",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.4"
+    "react-scripts": "2.1.4",
+    "react-svg": "^7.2.6"
   },
   "scripts": {
     "start": "react-app-rewired start",
