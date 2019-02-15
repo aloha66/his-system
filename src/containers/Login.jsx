@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Form, Icon, Input, Button, Checkbox, Card, Alert } from "antd";
 import "assets/Login.css";
-import { usePost } from "hPub_";
-import { UserContext } from "hooks/User.js";
+import { usePost } from "pub_";
+import { UserContext } from "tools/User.js";
 import { withRouter } from "react-router-dom";
 
 function NormalLoginForm(props) {

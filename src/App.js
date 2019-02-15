@@ -5,7 +5,7 @@ import Login from "con/Login";
 import { Switch, Route } from "react-router-dom";
 import zhCN from "antd/lib/locale-provider/zh_CN";
 import { LocaleProvider } from "antd";
-import { UserProvider } from "hooks/User";
+import { UserProvider } from "tools/User";
 
 class App extends Component {
   render() {

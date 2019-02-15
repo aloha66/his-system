@@ -20,10 +20,11 @@ module.exports = override(
     modifyVars: { "@primary-color": "#1DA57A" }
   }),
   addWebpackAlias({
-    hPub_: path.resolve(__dirname, "src/hooks/public.js"),
+    pub_: path.resolve(__dirname, "src/tools/public.js"),
     com: path.resolve(__dirname, "src/components"),
     con: path.resolve(__dirname, "src/containers"),
     hooks: path.resolve(__dirname, "src/hooks"),
+    tools: path.resolve(__dirname, "src/tools"),
     assets: path.resolve(__dirname, "src/assets")
   })
 );

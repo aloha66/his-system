@@ -4,10 +4,11 @@
     "allowSyntheticDefaultImports": false,
     "baseUrl": "./",
     "paths": {
-      "hPub_": ["src/hooks/public.js"],
+      "pub_": ["src/hooks/public.js"],
       "com/*": ["src/components/*"],
       "con/*": ["src/containers/*"],
       "hooks/*": ["src/hooks/*"],
+      "tools/*": ["src/tools/*"],
       "assets/*": ["src/assets/*"]
     }
   },
