@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Layout } from "antd";
 import MenuCom from "com/Menu";
 import { Link, Switch, Route } from "react-router-dom";
@@ -8,11 +8,16 @@ import Doc from "con/Doc";
 import Pha from "con/Pha";
 import EditPatient from "com/editPatient/EditPatientForm";
 import ContentCom from "com/Content.jsx";
+import { UserProvider, UserContext } from "tools/User";
+
 const { Sider, Content } = Layout;
 
 function Frame(props) {
   // 菜单折叠
   let [collapsed, setCollapsed] = useState(true);
+  // 登录授权
+  let { auth } = useContext(UserContext);
+  console.log(auth);
   return (
     <Layout style={{ height: "100%" }}>
       <Sider
