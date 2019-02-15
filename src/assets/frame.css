@@ -46,3 +46,18 @@ a.logo:focus {
 
 .logo > span:nth-child(5) {
 }
+
+.ant-layout-sider-children {
+  position: relative;
+}
+
+.dark.ant-popover-placement-right {
+}
+
+.dark .ant-popover-inner {
+  background-color: #001529;
+}
+.dark .ant-popover-arrow {
+  border-bottom-color: #001529 !important;
+  border-left-color: #001529 !important;
+}

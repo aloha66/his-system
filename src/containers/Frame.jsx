@@ -1,15 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Layout } from "antd";
 import MenuCom from "com/Menu";
-import { Link, Switch, Route } from "react-router-dom";
+import { Link, Switch, Route, Redirect } from "react-router-dom";
 import "assets/frame.css";
 import Home from "con/Home";
 import Doc from "con/Doc";
 import Pha from "con/Pha";
+import Login from "con/Login";
 import EditPatient from "com/editPatient/EditPatientForm";
 import ContentCom from "com/Content.jsx";
-import { UserProvider, UserContext } from "tools/User";
-
+import { UserContext } from "tools/User";
+import UserItem from "com/UserItem";
 const { Sider, Content } = Layout;
 
 function Frame(props) {
@@ -17,7 +18,7 @@ function Frame(props) {
   let [collapsed, setCollapsed] = useState(true);
   // 登录授权
   let { auth } = useContext(UserContext);
-  console.log(auth);
+  if (!auth.user) return <Redirect to="/login" />;
   return (
     <Layout style={{ height: "100%" }}>
       <Sider
@@ -27,6 +28,7 @@ function Frame(props) {
       >
         <Logo collapsed={collapsed} />
         <MenuCom />
+        <UserItem />
       </Sider>
       <Layout>
         <Content>
