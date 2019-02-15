@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Steps, Divider, Layout, Button, Modal } from "antd";
-import OutpatientList from "../components/OutpatientList";
-import EditPatient from "../components/editPatient/EditPatientForm";
+import OutpatientList from "com/OutpatientList";
+import EditPatient from "com/editPatient/EditPatientForm";
 
 const { Content } = Layout;
 const Step = Steps.Step;

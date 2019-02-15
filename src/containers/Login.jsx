@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import { Form, Icon, Input, Button, Checkbox, Card, Alert } from "antd";
-import "../assets/Login.css";
-import { usePost } from "../hooks/public";
+import "assets/Login.css";
+import { usePost } from "hPub_";
+import { UserContext } from "hooks/User.js";
+import { withRouter } from "react-router-dom";
 
 function NormalLoginForm(props) {
-  let [
-    fetch,
-    {
-      data: { data },
-      loading,
-      error,
-      setError
-    }
-  ] = usePost("http://localhost:1337/auth/local");
+  let [fetch, { loading, error }] = usePost("http://localhost:1337/auth/local");
 
+  let {
+    history: { replace }
+  } = props;
+  let { setAuth } = useContext(UserContext);
+  //登录
   function handleSubmit(e) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
-
         fetch({
           identifier: values.username,
           password: values.password
         }).then(data => {
-          console.log("登录成功");
+          //设置验证数据
+          setAuth(data);
+          //路由跳转
+          replace("/");
         });
       }
     });
@@ -74,6 +73,7 @@ function NormalLoginForm(props) {
               type="primary"
               htmlType="submit"
               className="login-form-button"
+              loading={loading}
             >
               登录
             </Button>
@@ -87,4 +87,4 @@ function NormalLoginForm(props) {
 const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
   NormalLoginForm
 );
-export default WrappedNormalLoginForm;
+export default withRouter(WrappedNormalLoginForm);

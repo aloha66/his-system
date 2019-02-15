@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "hPub_": ["src/hooks/public.js"],
+      "com/*": ["src/components/*"],
+      "con/*": ["src/containers/*"],
+      "hooks/*": ["src/hooks/*"],
+      "assets/*": ["src/assets/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"]
+}

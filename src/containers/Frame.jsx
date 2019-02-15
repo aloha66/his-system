@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
-import MenuCom from "../components/Menu";
+import MenuCom from "com/Menu";
 import { Link, Switch, Route } from "react-router-dom";
-import "../assets/frame.css";
-import Home from "./Home";
-import Doc from "./Doc";
-import Pha from "./Pha";
-import EditPatient from "../components/editPatient/EditPatientForm";
-import ContentCom from "../components/Content";
+import "assets/frame.css";
+import Home from "con/Home";
+import Doc from "con/Doc";
+import Pha from "con/Pha";
+import EditPatient from "com/editPatient/EditPatientForm";
+import ContentCom from "com/Content.jsx";
 const { Sider, Content } = Layout;
 
 function Frame(props) {

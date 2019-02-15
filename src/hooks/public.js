@@ -32,11 +32,11 @@ function useQuery(url, type) {
     });
     setLoading(false);
     setData(response.data);
-    if (response.data.status == 0) {
-      return response.data;
-    } else {
+    if (response.data.status && response.data.status != 0) {
       setError(response.data.message);
       throw response.data.message;
+    } else {
+      return response.data;
     }
   }
   return [fetch, { data, loading, error, setError }];

@@ -2,8 +2,10 @@ const {
   override,
   fixBabelImports,
   addLessLoader,
-  addBabelPlugins
+  addBabelPlugins,
+  addWebpackAlias
 } = require("customize-cra");
+const path = require("path");
 const rewireReactHotLoader = require("react-app-rewire-hot-loader");
 
 module.exports = override(
@@ -16,5 +18,12 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: { "@primary-color": "#1DA57A" }
+  }),
+  addWebpackAlias({
+    hPub_: path.resolve(__dirname, "src/hooks/public.js"),
+    com: path.resolve(__dirname, "src/components"),
+    con: path.resolve(__dirname, "src/containers"),
+    hooks: path.resolve(__dirname, "src/hooks"),
+    assets: path.resolve(__dirname, "src/assets")
   })
 );
