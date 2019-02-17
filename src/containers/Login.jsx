@@ -4,9 +4,10 @@ import "assets/Login.css";
 import { usePost } from "pub_";
 import { UserContext } from "tools/User.js";
 import { withRouter } from "react-router-dom";
+import { BASE_URL } from "config_";
 
 function NormalLoginForm(props) {
-  let [fetch, { loading, error }] = usePost("http://localhost:1337/auth/local");
+  let [fetch, { loading, error }] = usePost(BASE_URL + "/auth/local");
 
   let {
     history: { replace }
