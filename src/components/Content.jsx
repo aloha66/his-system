@@ -5,9 +5,9 @@ function ContentCom({ children }) {
     <Layout.Content
       style={{
         margin: "24px 16px",
-        padding: "5px 24px ",
+        padding: "24px",
         background: "#fff",
-        minHeight: 280
+        minHeight: 80
       }}
     >
       {children}

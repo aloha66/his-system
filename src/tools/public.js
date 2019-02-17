@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export function useGet(url) {
@@ -40,4 +40,16 @@ function useQuery(url, type) {
     }
   }
   return [fetch, { data, loading, error, setError }];
+}
+
+//didMount处理
+export function useDidMount(callBack) {
+  const [didMount, setDidMount] = useState(false);
+  useEffect(() => {
+    if (!didMount) {
+      setDidMount(true);
+      callBack();
+    }
+  }, []);
+  return didMount;
 }

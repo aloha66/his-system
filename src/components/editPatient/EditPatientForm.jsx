@@ -1,26 +1,38 @@
-import React from "react";
-//编辑患者
+import React, { useEffect } from "react";
+import {
+  Form,
+  Input,
+  Button,
+  Radio,
+  DatePicker,
+  Divider,
+  InputNumber
+} from "antd";
 
-// function EditPatient() {
-//   return "编辑患者";
-// }
-
-// export default EditPatient;
-
-import { Form, Input, Select, Button, Radio, DatePicker } from "antd";
-
-const { Option } = Select;
 function EditPatient(props) {
-  const { getFieldDecorator } = props.form;
+  const { getFieldDecorator, resetFields } = props.form;
+  let source = props.source || {};
+  //清空数据
+  useEffect(() => {
+    resetFields();
+  }, [props.visible]);
+
   //提交
-  const handleSubmit = e => {
-    e.preventDefault();
-    props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
+  function handleSubmit(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    return new Promise((resolve, reject) => {
+      props.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          console.log("Received values of form: ", values);
+          resolve(values);
+        } else {
+          reject(err);
+        }
+      });
     });
-  };
+  }
 
   const formItemLayout = {
     labelCol: {
@@ -32,27 +44,6 @@ function EditPatient(props) {
       sm: { span: 20 }
     }
   };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0
-      },
-      sm: {
-        span: 16,
-        offset: 4
-      }
-    }
-  };
-
-  const prefixSelector = getFieldDecorator("prefix", {
-    initialValue: "86"
-  })(
-    <Select style={{ width: 70 }}>
-      <Option value="86">+86</Option>
-      <Option value="87">+87</Option>
-    </Select>
-  );
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -62,7 +53,8 @@ function EditPatient(props) {
             {
               message: "请输入身份证号!"
             }
-          ]
+          ],
+          initialValue: source.idcard
         })(<Input />)}
       </Form.Item>
       <Form.Item {...formItemLayout} label="姓名:">
@@ -72,25 +64,22 @@ function EditPatient(props) {
               required: true,
               message: "请输入姓名!"
             }
-          ]
+          ],
+          initialValue: source.name
         })(<Input />)}
       </Form.Item>
-      <Form.Item {...formItemLayout} label="性别">
-        {getFieldDecorator("sex", {
+
+      <Form.Item {...formItemLayout} label="联系电话:">
+        {getFieldDecorator("phone", {
           rules: [
             {
               required: true,
-              message: "请选择性别!"
+              message: "请输入联系电话"
             }
-          ]
-        })(
-          <Radio.Group>
-            <Radio value="a">男</Radio>
-            <Radio value="b">女</Radio>
-          </Radio.Group>
-        )}
+          ],
+          initialValue: source.phone
+        })(<Input />)}
       </Form.Item>
-
       <Form.Item {...formItemLayout} label="出生日期">
         {getFieldDecorator("date", {
           rules: [
@@ -98,7 +87,8 @@ function EditPatient(props) {
               required: true,
               message: "请选择出生日期!"
             }
-          ]
+          ],
+          initialValue: source.birthday
         })(<DatePicker />)}
       </Form.Item>
 
@@ -109,27 +99,35 @@ function EditPatient(props) {
               required: true,
               message: "请输入年龄"
             }
-          ]
-        })(<Input />)}
+          ],
+          initialValue: source.age
+        })(<InputNumber />)}
       </Form.Item>
-      <Form.Item {...formItemLayout} label="联系电话:">
-        {getFieldDecorator("phone", {
+      <Form.Item {...formItemLayout} label="性别">
+        {getFieldDecorator("sex", {
           rules: [
             {
               required: true,
-              message: "请输入联系电话"
+              message: "请选择性别!"
             }
-          ]
-        })(<Input />)}
+          ],
+          initialValue: source.sex || 0
+        })(
+          <Radio.Group>
+            <Radio value={1}>男</Radio>
+            <Radio value={2}>女</Radio>
+            <Radio value={0}>不详</Radio>
+          </Radio.Group>
+        )}
       </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
-          保存
-        </Button>
-      </Form.Item>
+      <Divider />
+      <Button type="primary" htmlType="submit" block>
+        保存
+      </Button>
     </Form>
   );
 }
 
 const WrappedEditPatient = Form.create({ name: "register" })(EditPatient);
+
 export default WrappedEditPatient;
